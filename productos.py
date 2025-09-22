@@ -6,6 +6,7 @@ Codigo (string), Nombre (string), precio (float), saldo (int)
 class Productos:
     def __init__(self, listado):
         self.listado = listado
+    
     def buscar(self, cod):
         posicion = -1
         for i in range(len(self.listado)):
@@ -13,6 +14,7 @@ class Productos:
                 posicion = i
                 break
         return posicion
+    
     def agregar(self,prod):
         pos = self.buscar(prod["codigo"])
         if pos==-1:
@@ -20,13 +22,32 @@ class Productos:
             return 0
         else:
             return 1
-    def modificar(self,prod):
-        pos = self.buscar(prod["codigo"])
-        self.listado[pos]=prod
-    def borrar(self,cod):
+    
+    def eliminar(self, cod):
         pos = self.buscar(cod)
-        self.listado.pop(pos)
+        if pos==-1:
+            return 1
+        else:
+            del self.listado[pos]
+            return 0
+    
+    def modificar(self, prod):
+        pos = self.buscar(prod["codigo"])
+        if pos==-1:
+            return 1
+        else:
+            self.listado[pos] = prod
+            return 0
+    
     def listar(self):
-        print("LISTADO DE PRODUCTOS")
-        for i in range(len(self.listado)):
-            print(self.listado[i])
+        return self.listado
+    
+def crear_producto(codigo, nombre, precio, saldo):
+    return {
+        "codigo": codigo,
+        "nombre": nombre,
+        "precio": precio,
+        "saldo": saldo
+    }
+
+productos = Productos([])

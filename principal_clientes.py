@@ -1,10 +1,3 @@
-"""
-Se trata de escribir un programa con un CRUD para clientes
-Cada producto debe tener los siguientes datos:
-Identificación (string), Nombre (string), saldo (float), 
-cupo_crédito (float)
-"""
-
 import json
 from clientes import Clientes
 
@@ -66,4 +59,3 @@ def crud_clientes(listado, mis_clientes):
             break
         else:
             print("Opción inválida")
-
